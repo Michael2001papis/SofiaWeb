@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סופיה קליניקת יופי - טיפוח ויופי מקצועי בערד</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Header Component
+        function Header({ currentSection, onSectionChange, isMobileMenuOpen, toggleMobileMenu }) {
+            return (
+                <header className="header">
+                    <nav className="navbar">
+                        <div className="nav-container">
+                            <div className="logo">
+                                <img src="FullLogo/FullLogo_Transparent.png" alt="סופיה קליניקת יופי" className="logo-image" />
+                                <h1>סופיה קליניקת יופי</h1>
+                            </div>
+                            <ul className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+                                <li><a href="#" className={`nav-link ${currentSection === 'home' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); onSectionChange('home'); }}>בית</a></li>
+                                <li><a href="#" className={`nav-link ${currentSection === 'about' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); onSectionChange('about'); }}>אודות</a></li>
+                                <li><a href="#" className={`nav-link ${currentSection === 'services' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); onSectionChange('services'); }}>שירותים</a></li>
+                                <li><a href="#" className={`nav-link ${currentSection === 'gallery' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); onSectionChange('gallery'); }}>גלריה</a></li>
+                                <li><a href="#" className={`nav-link ${currentSection === 'contact' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); onSectionChange('contact'); }}>צור קשר</a></li>
+                            </ul>
+                            <div className="hamburger" onClick={toggleMobileMenu}>
+                                <span className="bar"></span>
+                                <span className="bar"></span>
+                                <span className="bar"></span>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+            );
+        }
+
+        // Hero Component
+        function Hero({ onContactClick }) {
+            return (
+                <section className="hero">
+                    <div className="hero-content">
+                        <h2 className="hero-title">ברוכים הבאים לסופיה קליניקת יופי</h2>
+                        <p className="hero-subtitle">מקצועיות, איכות וטיפוח ברמה הגבוהה ביותר</p>
+                        <a href="#" className="cta-button" onClick={(e) => { e.preventDefault(); onContactClick(); }}>קבע תור עכשיו</a>
+                    </div>
+               <div className="hero-image">
+                   <div className="beauty-placeholder">
+                       <img src="FullLogo/FullLogo_Transparent.png" alt="סופיה קליניקת יופי" className="hero-main-logo" />
+                   </div>
+               </div>
+                </section>
+            );
+        }
+
+        // About Component
+        function About() {
+            return (
+                <section className="about">
+                    <div className="container">
+                        <h2 className="section-title">אודות הקליניקה</h2>
+                        <div className="about-content">
+                            <div className="about-text">
+                                <p>קליניקת היופי של סופיה היא בית חם ומקצועי לכל אישה המבקשת לטפח את יופייה הטבעי ולהעצים את הביטחון העצמי שלה. עם ניסיון של 8 שנים בתחום היופי והטיפוח, אנו מתמחים במגוון רחב של טיפולים מתקדמים המותאמים אישית לכל לקוחה ולצרכיה הייחודיים.</p>
+                                
+                                <p>הקליניקה שלנו מצוידת בציוד המתקדם והחדיש ביותר בשוק, תוך שימוש במוצרים איכותיים, בטוחים ומוכרים בעולם היופי. אנו עובדים אך ורק עם מותגים מובילים ומוכרים, תוך הקפדה על סטנדרטים גבוהים של איכות ובטיחות.</p>
+                                
+                                <p>הצוות המקצועי שלנו מורכב מאנשי מקצוע מוסמכים ומנוסים, המחויבים לספק לך חוויה ייחודית, מקצועית ומספקת. כל טיפול מתבצע באווירה נעימה, רגועה ומקצועית, תוך הקפדה על פרטיותך ונוחותך המרבית.</p>
+                                
+                                <p>אנו מאמינים שכל אישה ראויה להרגיש יפה, בטוחה ומרוצה מעצמה. לכן, אנו מציעים ייעוץ אישי ומקצועי לכל לקוחה, תוך התאמת הטיפול המושלם עבורה. המטרה שלנו היא לא רק לטפח את יופייך החיצוני, אלא גם לחזק את הביטחון העצמי שלך ולהעניק לך תחושה של רווחה וסיפוק.</p>
+                            </div>
+                            <div className="about-features">
+                                <div className="feature">
+                                    <i className="fas fa-award"></i>
+                                    <h3>מקצועיות מוכחת</h3>
+                                    <p>סופיה עם ניסיון של 8 שנים בתחום היופי והטיפוח בערד</p>
+                                </div>
+                                <div className="feature">
+                                    <i className="fas fa-heart"></i>
+                                    <h3>איכות ללא פשרות</h3>
+                                    <p>מוצרים איכותיים ובטוחים ממותגים מובילים בעולם היופי</p>
+                                </div>
+                                <div className="feature">
+                                    <i className="fas fa-shield-alt"></i>
+                                    <h3>בטיחות מקסימלית</h3>
+                                    <p>סטנדרטים גבוהים של היגיינה, סטריליזציה ובטיחות</p>
+                                </div>
+                                <div className="feature">
+                                    <i className="fas fa-user-friends"></i>
+                                    <h3>שירות אישי</h3>
+                                    <p>ייעוץ אישי ומקצועי המותאם לצרכים הייחודיים של כל לקוחה</p>
+                                </div>
+                                <div className="feature">
+                                    <i className="fas fa-gem"></i>
+                                    <h3>חוויה ייחודית</h3>
+                                    <p>אווירה נעימה, רגועה ומקצועית המעניקה תחושת רווחה וסיפוק</p>
+                                </div>
+                                <div className="feature">
+                                    <i className="fas fa-tools"></i>
+                                    <h3>ציוד מתקדם</h3>
+                                    <p>ציוד חדיש ומתקדם המבטיח תוצאות אופטימליות בכל טיפול</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Services Component
+        function Services() {
+            const services = [
+                { icon: 'fas fa-cut', title: 'תספורות וסטיילינג', description: 'תספורות מקצועיות, צביעת שיער, החלקות וטיפולים לשיער' },
+                { icon: 'fas fa-palette', title: 'איפור מקצועי', description: 'איפור לאירועים, איפור יומיומי וטיפולי עור' },
+                { icon: 'fas fa-hand-holding-heart', title: 'טיפולי פנים', description: 'ניקוי פנים, מסכות, פילינג וטיפולי אנטי אייג\'ינג' },
+                { icon: 'fas fa-fingerprint', title: 'טיפולי גוף', description: 'עיסויים, טיפולי גוף, הסרת שיער וטיפולי פדיקור' },
+                { icon: 'fas fa-gem', title: 'טיפולי ציפורניים', description: 'מניקור, פדיקור, ציפורניים מלאכותיות ועיצוב' },
+                { icon: 'fas fa-magic', title: 'טיפולים מתקדמים', description: 'בוטוקס, מילוי קמטים, טיפולי לייזר וטיפולים אסתטיים' }
+            ];
+
+            return (
+                <section className="services">
+                    <div className="container">
+                        <h2 className="section-title">השירותים שלנו</h2>
+                        <div className="services-grid">
+                            {services.map((service, index) => (
+                                <div key={index} className="service-card">
+                                    <div className="service-icon">
+                                        <i className={service.icon}></i>
+                                    </div>
+                                    <h3>{service.title}</h3>
+                                    <p>{service.description}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Gallery Component
+        function Gallery() {
+            const galleryItems = [
+                { icon: 'fas fa-spa', title: 'טיפולי פנים', description: 'טיפולי פנים מתקדמים לתוצאות מושלמות' },
+                { icon: 'fas fa-eye', title: 'עיצוב גבות', description: 'עיצוב גבות מקצועי ומדויק' },
+                { icon: 'fas fa-palette', title: 'איפור מקצועי', description: 'איפור מקצועי לאירועים מיוחדים' },
+                { icon: 'fas fa-cut', title: 'טיפולי שיער', description: 'טיפולי שיער מתקדמים ובריאים' },
+                { icon: 'fas fa-hand-paper', title: 'טיפולי ידיים', description: 'טיפולי ידיים וציפורניים מקצועיים' },
+                { icon: 'fas fa-heart', title: 'טיפולי גוף', description: 'טיפולי גוף מרגיעים ומפנקים' },
+                { icon: 'fas fa-gem', title: 'אנטי אייג\'ינג', description: 'טיפולים מתקדמים נגד הזדקנות' },
+                { icon: 'fas fa-leaf', title: 'טיפולים טבעיים', description: 'טיפולים טבעיים ואורגניים' },
+                { icon: 'fas fa-star', title: 'חבילות טיפוח', description: 'חבילות טיפוח מקיפות ומפנקות' }
+            ];
+
+            const [lightboxImage, setLightboxImage] = useState(null);
+
+            const openLightbox = (item) => {
+                setLightboxImage(item);
+            };
+
+            const closeLightbox = () => {
+                setLightboxImage(null);
+            };
+
+            return (
+                <section className="gallery">
+                    <div className="container">
+                        <h2 className="section-title">גלריה</h2>
+                        <p className="gallery-subtitle">צפו בתוצאות המרשימות של הטיפולים שלנו</p>
+                        <div className="gallery-grid">
+                            {galleryItems.map((item, index) => (
+                                <div key={index} className="gallery-item" onClick={() => openLightbox(item)}>
+                                    <div className="gallery-placeholder">
+                                        <i className={item.icon}></i>
+                                        <h3>{item.title}</h3>
+                                        <p>{item.description}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {lightboxImage && (
+                        <div className="lightbox" onClick={closeLightbox}>
+                            <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+                                <span className="lightbox-close" onClick={closeLightbox}>&times;</span>
+                                <div className="lightbox-image">
+                                    <i className={lightboxImage.icon}></i>
+                                    <p>{lightboxImage.title}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </section>
+            );
+        }
+
+
+        // Contact Component
+        function Contact() {
+            const [formData, setFormData] = useState({
+                name: '',
+                phone: '',
+                email: '',
+                service: '',
+                message: ''
+            });
+
+            const [notification, setNotification] = useState(null);
+
+            const handleInputChange = (e) => {
+                const { name, value } = e.target;
+                setFormData(prev => ({
+                    ...prev,
+                    [name]: value
+                }));
+            };
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                
+                // Basic validation
+                if (!formData.name || !formData.phone || !formData.email || !formData.service) {
+                    setNotification({ type: 'error', message: 'אנא מלא את כל השדות הנדרשים' });
+                    return;
+                }
+                
+                // Phone validation (Israeli phone number)
+                const phoneRegex = /^(\+972|0)([23489]|5[012345689]|77)[0-9]{7}$/;
+                if (!phoneRegex.test(formData.phone.replace(/\s/g, ''))) {
+                    setNotification({ type: 'error', message: 'אנא הכנס מספר טלפון ישראלי תקין' });
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(formData.email)) {
+                    setNotification({ type: 'error', message: 'אנא הכנס כתובת אימייל תקינה' });
+                    return;
+                }
+                
+                setNotification({ type: 'success', message: 'ההודעה נשלחה בהצלחה! נחזור אליך בהקדם' });
+                setFormData({ name: '', phone: '', email: '', service: '', message: '' });
+            };
+
+            const openWhatsApp = () => {
+                const phoneNumber = '972501234567';
+                const message = 'שלום, אני מעוניינת לקבוע תור בקליניקה';
+                const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(url, '_blank');
+            };
+
+            return (
+                <section className="contact">
+                    <div className="container">
+                        <h2 className="section-title">צור קשר</h2>
+                        <div className="contact-content">
+                            <div className="contact-info">
+                                <div className="contact-item">
+                                    <i className="fas fa-map-marker-alt"></i>
+                                    <div>
+                                        <h3>מיקום</h3>
+                                        <p>ערד</p>
+                                    </div>
+                                </div>
+                                <div className="contact-item">
+                                    <i className="fas fa-phone"></i>
+                                    <div>
+                                        <h3>טלפון</h3>
+                                        <p>053-530-5330</p>
+                                    </div>
+                                </div>
+                                <div className="contact-item">
+                                    <i className="fas fa-envelope"></i>
+                                    <div>
+                                        <h3>אימייל</h3>
+                                        <p>פרטי יצירת קשר יועדכנו בקרוב</p>
+                                    </div>
+                                </div>
+                                <div className="contact-item">
+                                    <i className="fas fa-clock"></i>
+                                    <div>
+                                        <h3>שעות פעילות</h3>
+                                        <p>תיאום פגישות בטלפון<br/>053-530-5330</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="contact-form">
+                                <form onSubmit={handleSubmit}>
+                                    <h4>שלח הודעה</h4>
+                                    <div className="form-group">
+                                        <input 
+                                            type="text" 
+                                            name="name"
+                                            placeholder="שם מלא" 
+                                            value={formData.name}
+                                            onChange={handleInputChange}
+                                            required 
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <input 
+                                            type="tel" 
+                                            name="phone"
+                                            placeholder="מספר טלפון" 
+                                            value={formData.phone}
+                                            onChange={handleInputChange}
+                                            required 
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <input 
+                                            type="email" 
+                                            name="email"
+                                            placeholder="כתובת אימייל" 
+                                            value={formData.email}
+                                            onChange={handleInputChange}
+                                            required 
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <select 
+                                            name="service"
+                                            value={formData.service}
+                                            onChange={handleInputChange}
+                                            required
+                                        >
+                                            <option value="">בחר שירות</option>
+                                            <option value="hair">תספורת וסטיילינג</option>
+                                            <option value="makeup">איפור מקצועי</option>
+                                            <option value="facial">טיפולי פנים</option>
+                                            <option value="body">טיפולי גוף</option>
+                                            <option value="nails">טיפולי ציפורניים</option>
+                                            <option value="advanced">טיפולים מתקדמים</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-group">
+                                        <textarea 
+                                            name="message"
+                                            placeholder="הודעה נוספת" 
+                                            rows="4"
+                                            value={formData.message}
+                                            onChange={handleInputChange}
+                                        ></textarea>
+                                    </div>
+                                    <button type="submit" className="submit-btn">שלח הודעה</button>
+                                </form>
+                                
+                                <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+                                    <button onClick={openWhatsApp} className="whatsapp-btn">
+                                        <i className="fab fa-whatsapp"></i>
+                                        שלח הודעה בווטסאפ
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {notification && (
+                        <div className={`notification notification-${notification.type}`}>
+                            <div className="notification-content">
+                                <i className={`fas ${notification.type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}`}></i>
+                                <span>{notification.message}</span>
+                            </div>
+                        </div>
+                    )}
+                </section>
+            );
+        }
+
+        // Footer Component
+        function Footer({ onSectionChange }) {
+            return (
+                <footer className="footer">
+                    <div className="container">
+                        <div className="footer-content">
+                            <div className="footer-section">
+                                <h3>סופיה קליניקת יופי</h3>
+                                <p>מקצועיות, איכות וטיפוח ברמה הגבוהה ביותר</p>
+                            </div>
+                            <div className="footer-section">
+                                <h3>קישורים מהירים</h3>
+                                <ul>
+                                    <li><a href="#" onClick={(e) => { e.preventDefault(); onSectionChange('about'); }}>אודות</a></li>
+                                    <li><a href="#" onClick={(e) => { e.preventDefault(); onSectionChange('services'); }}>שירותים</a></li>
+                                    <li><a href="#" onClick={(e) => { e.preventDefault(); onSectionChange('gallery'); }}>גלריה</a></li>
+                                    <li><a href="#" onClick={(e) => { e.preventDefault(); onSectionChange('contact'); }}>צור קשר</a></li>
+                                </ul>
+                            </div>
+                            <div className="footer-section">
+                                <h3>עקבו אחרינו</h3>
+                                <div className="social-links">
+                                    <a href="#"><i className="fab fa-facebook"></i></a>
+                                    <a href="#"><i className="fab fa-instagram"></i></a>
+                                    <a href="#"><i className="fab fa-whatsapp"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="footer-bottom">
+                            <p>&copy; 2024 סופיה קליניקת יופי. כל הזכויות שמורות.</p>
+                        </div>
+                    </div>
+                </footer>
+            );
+        }
+
+        // Back to Top Component
+        function BackToTop() {
+            const [isVisible, setIsVisible] = useState(false);
+
+            useEffect(() => {
+                const toggleVisibility = () => {
+                    if (window.scrollY > 300) {
+                        setIsVisible(true);
+                    } else {
+                        setIsVisible(false);
+                    }
+                };
+
+                window.addEventListener('scroll', toggleVisibility);
+                return () => window.removeEventListener('scroll', toggleVisibility);
+            }, []);
+
+            const scrollToTop = () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            };
+
+            return (
+                <button 
+                    className="back-to-top" 
+                    onClick={scrollToTop}
+                    style={{
+                        opacity: isVisible ? 1 : 0,
+                        visibility: isVisible ? 'visible' : 'hidden'
+                    }}
+                >
+                    <i className="fas fa-arrow-up"></i>
+                </button>
+            );
+        }
+
+        // Main App Component
+        function App() {
+            const [currentSection, setCurrentSection] = useState('home');
+            const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+            const handleSectionChange = (section) => {
+                setCurrentSection(section);
+                setIsMobileMenuOpen(false);
+                
+                // Smooth scroll to section
+                setTimeout(() => {
+                    const element = document.getElementById(section);
+                    if (element) {
+                        const headerHeight = document.querySelector('.header').offsetHeight;
+                        const targetPosition = element.offsetTop - headerHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 100);
+            };
+
+            const toggleMobileMenu = () => {
+                setIsMobileMenuOpen(!isMobileMenuOpen);
+            };
+
+            const handleContactClick = () => {
+                handleSectionChange('contact');
+            };
+
+            // Header background change on scroll
+            useEffect(() => {
+                const handleScroll = () => {
+                    const header = document.querySelector('.header');
+                    if (window.scrollY > 100) {
+                        header.style.background = 'linear-gradient(135deg, rgba(255, 107, 157, 0.95), rgba(196, 69, 105, 0.95))';
+                        header.style.backdropFilter = 'blur(10px)';
+                    } else {
+                        header.style.background = 'linear-gradient(135deg, #ff6b9d, #c44569)';
+                        header.style.backdropFilter = 'none';
+                    }
+                };
+
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <div className="App">
+                    <Header 
+                        currentSection={currentSection}
+                        onSectionChange={handleSectionChange}
+                        isMobileMenuOpen={isMobileMenuOpen}
+                        toggleMobileMenu={toggleMobileMenu}
+                    />
+                    
+                    <main>
+                        {currentSection === 'home' && <Hero onContactClick={handleContactClick} />}
+                        {currentSection === 'about' && <About />}
+                        {currentSection === 'services' && <Services />}
+                        {currentSection === 'gallery' && <Gallery />}
+                        {currentSection === 'contact' && <Contact />}
+                    </main>
+                    
+                    <Footer onSectionChange={handleSectionChange} />
+                    <BackToTop />
+                </div>
+            );
+        }
+
+        // Render the app using React 18 createRoot
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
